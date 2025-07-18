@@ -11,14 +11,14 @@ module.exports = router;
  * @swagger
  * tags:
  *   name: Auth
- *   description: Rotas de autenticação
+ *   description: Authentication routes
  */
 
 /**
  * @swagger
  * /api/auth/register:
  *   post:
- *     summary: Registra um novo usuário
+ *     summary: Register a new user
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -33,19 +33,19 @@ module.exports = router;
  *             properties:
  *               username:
  *                 type: string
- *                 example: usuario1
+ *                 example: user1
  *               email:
  *                 type: string
- *                 example: usuario1@example.com
+ *                 example: user1@example.com
  *               password:
  *                 type: string
  *                 example: 123456
  *     responses:
  *       201:
- *         description: Usuário criado com sucesso
+ *         description: User created successfully
  *       400:
- *         description: Usuário já existe
+ *         description: User already exists
  *       500:
- *         description: Erro interno
+ *         description: Internal server error
  */
 router.post('/register', authController.register);

@@ -19,9 +19,10 @@ const entryRoutes = require('./routes/entries');
 app.use('/api/auth', authRoutes);
 app.use('/api/entries', entryRoutes);
 
-// Swagger UI
+// Swagger UI route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Test route
 app.get('/', (req, res) => {
   res.send('Mindful Moments API is running 🌿');
 });

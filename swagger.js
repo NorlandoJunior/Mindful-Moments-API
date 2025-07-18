@@ -7,13 +7,15 @@ const options = {
     info: {
       title: 'Mindful Moments API',
       version: '1.0.0',
-      description: 'API para app Mindful Moments',
+      description: 'API documentation for the Mindful Moments app',
     },
     servers: [
       {
-        url: 'https://mindful-moments-api.onrender.com/',  
+        url: 'https://mindful-moments-api.onrender.com', 
+      },
+    ],
   },
-  apis: ['./routes/*.js'], 
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJsDoc(options);
