@@ -12,6 +12,18 @@ exports.getEntries = async (req, res) => {
 exports.createEntry = async (req, res) => {
   try {
     const { mood, reflection, minutesMeditated, tags } = req.body;
+
+    //validation
+    if (!mood || typeof mood !== 'string') {
+      return res.status(400).json({ message: 'Mood is required and must be a string.' });
+    }
+    if (minutesMeditated !== undefined && typeof minutesMeditated !== 'number') {
+      return res.status(400).json({ message: 'MinutesMeditated must be a number.' });
+    }
+    if (tags !== undefined && !Array.isArray(tags)) {
+      return res.status(400).json({ message: 'Tags must be an array of strings.' });
+    }
+
     const newEntry = new Entry({
       userId: req.user.id,
       mood,
@@ -28,6 +40,18 @@ exports.createEntry = async (req, res) => {
 
 exports.updateEntry = async (req, res) => {
   try {
+    const { mood, reflection, minutesMeditated, tags } = req.body;
+    // validation
+    if (mood !== undefined && typeof mood !== 'string') {
+      return res.status(400).json({ message: 'Mood must be a string.' });
+    }
+    if (minutesMeditated !== undefined && typeof minutesMeditated !== 'number') {
+      return res.status(400).json({ message: 'MinutesMeditated must be a number.' });
+    }
+    if (tags !== undefined && !Array.isArray(tags)) {
+      return res.status(400).json({ message: 'Tags must be an array of strings.' });
+    }
+
     const entry = await Entry.findOneAndUpdate(
       { _id: req.params.id, userId: req.user.id },
       { ...req.body, updatedAt: Date.now() },
