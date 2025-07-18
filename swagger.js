@@ -11,9 +11,18 @@ const options = {
     },
     servers: [
       {
-        url: 'https://mindful-moments-api.onrender.com', 
+        url: 'https://mindful-moments-api.onrender.com',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   apis: ['./routes/*.js'],
 };
