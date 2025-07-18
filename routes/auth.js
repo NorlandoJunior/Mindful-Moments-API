@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
-
-module.exports = router;
-
 /**
  * @swagger
  * tags:
@@ -55,8 +50,7 @@ router.post('/register', authController.register);
  * /api/auth/login:
  *   post:
  *     summary: Login user
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -66,8 +60,10 @@ router.post('/register', authController.register);
  *             properties:
  *               email:
  *                 type: string
+ *                 example: user1@example.com
  *               password:
  *                 type: string
+ *                 example: 123456
  *             required:
  *               - email
  *               - password
@@ -87,3 +83,5 @@ router.post('/register', authController.register);
  *         description: Internal server error
  */
 router.post('/login', authController.login);
+
+module.exports = router;
