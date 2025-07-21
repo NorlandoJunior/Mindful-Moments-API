@@ -9,6 +9,16 @@ exports.getEntries = async (req, res) => {
   }
 };
 
+exports.getEntryById = async (req, res) => {
+  try {
+    const entry = await Entry.findOne({ _id: req.params.id, userId: req.user.id });
+    if (!entry) return res.status(404).json({ message: 'Entry not found' });
+    res.json(entry);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createEntry = async (req, res) => {
   try {
     const { mood, reflection, minutesMeditated, tags } = req.body;

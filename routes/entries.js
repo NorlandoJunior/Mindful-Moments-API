@@ -6,6 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 // Protect all routes
 router.use(authMiddleware);
 
+
 /**
  * @swagger
  * /api/entries:
@@ -62,6 +63,71 @@ router.get('/', entryController.getEntries);
  *         description: Internal server error
  */
 router.post('/', entryController.createEntry);
+
+/**
+ * @swagger
+ * /api/entries/{id}:
+ *   get:
+ *     summary: Get an entry by ID
+ *     tags: [Entries]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Entry data
+ *       404:
+ *         description: Entry not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/:id', entryController.getEntryById);
+
+/**
+ * @swagger
+ * /api/entries/{id}:
+ *   put:
+ *     summary: Update an entry by ID
+ *     tags: [Entries]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               mood:
+ *                 type: string
+ *               reflection:
+ *                 type: string
+ *               minutesMeditated:
+ *                 type: number
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Entry updated
+ *       404:
+ *         description: Entry not found
+ *       500:
+ *         description: Internal server error
+ */
+router.put('/:id', entryController.updateEntry);
 
 /**
  * @swagger

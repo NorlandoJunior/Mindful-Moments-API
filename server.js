@@ -18,6 +18,7 @@ const entryRoutes = require('./routes/entries');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/entries', entryRoutes);
+app.use('/api/notes', noteRoutes);
 
 // Swagger UI route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
